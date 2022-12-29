@@ -1,0 +1,43 @@
+{
+  "$id": "https://oneteme.github.io/http-request.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HttpResquet",
+  "type": "object",
+  "required": [ "uri" ],
+  "properties": {
+    "uri": {
+      "type": "string",
+      "description": "relative ressouce URI"
+    },
+    "method": {
+      "type": "string",
+      "description": "http request method",
+      "pattern": "GET|POST|PUT|PATCH|DELETE|UPDATE"
+    },
+    "headers": {
+      "type": "array",
+      "description": "http request headers",
+      "items":{
+        "type": "object",
+        "patternProperties": {
+          ".*": { "type": "string" }
+        }
+      }
+    },
+    "body": {
+      "description": "http request body",
+      "type": "object"
+    },
+    "acceptableStatus": {
+      "type": "array",
+      "description": "acceptable response status code",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items":{
+        "type": "integer",
+        "minimum": 100,
+        "maximum": 527
+      }
+    }
+  }
+}
