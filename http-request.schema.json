@@ -7,7 +7,8 @@
   "properties": {
     "uri": {
       "type": "string",
-      "description": "relative ressouce URI"
+      "description": "http relative URI",
+      "pattern": "^(?!.*//).*$"
     },
     "method": {
       "type": "string",
@@ -15,18 +16,15 @@
       "pattern": "^(GET|POST|PUT|PATCH|DELETE|UPDATE)$"
     },
     "headers": {
-      "type": "array",
+      "type": "object",
       "description": "http request headers",
-      "items":{
-        "type": "object",
-        "patternProperties": {
-          ".*": { "type": "string" }
-        }
+      "patternProperties": {
+        ".*": { "type": "string" }
       }
     },
     "body": {
       "description": "http request body",
-      "type": "object"
+      "type":["number","string","boolean","object","array", "null"]
     },
     "acceptableStatus": {
       "type": "array",
