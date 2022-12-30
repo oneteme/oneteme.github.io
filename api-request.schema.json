@@ -46,7 +46,7 @@
         },
         "executionConfig":{
           "type": "object",
-          "description": "Api execution configuration [optinal]",
+          "description": "Api execution configuration [optional]",
           "properties": {
             "enabled": {
               "type": "boolean",
