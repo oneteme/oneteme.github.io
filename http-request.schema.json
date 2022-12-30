@@ -12,7 +12,7 @@
     "method": {
       "type": "string",
       "description": "http request method [optional : 'GET' by default]",
-      "pattern": "^(GET|POST|PUT|PATCH|DELETE|UPDATE)$"
+      "enum": ["GET","POST","PUT","PATCH","DELETE","UPDATE"]
     },
     "headers": {
       "type": "object",
