@@ -3,39 +3,39 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "HttpResquet",
   "type": "object",
-  "required": [ "uri" ],
   "properties": {
     "uri": {
       "type": "string",
-      "description": "http relative URI",
+      "description": "http relative URI [required]",
       "pattern": "^(?!.*//).*$"
     },
     "method": {
       "type": "string",
-      "description": "http request method",
+      "description": "http request method [optional : 'GET' by default]",
       "pattern": "^(GET|POST|PUT|PATCH|DELETE|UPDATE)$"
     },
     "headers": {
       "type": "object",
-      "description": "http request headers",
+      "description": "http request headers [optional : null by default]",
       "patternProperties": {
         ".*": { "type": "string" }
       }
     },
     "body": {
-      "description": "http request body",
-      "type":["number","string","boolean","object","array", "null"]
+      "description": "http request body [optional : null by default]",
+      "type": ["number","string","boolean","object","array", "null"]
     },
     "acceptableStatus": {
       "type": "array",
-      "description": "acceptable response status code",
-      "minItems": 1,
+      "description": "acceptable response status code [optional : 200 by default]",
       "uniqueItems": true,
+      "minItems": 1,
       "items":{
         "type": "integer",
         "minimum": 100,
         "maximum": 527
       }
     }
-  }
+  },
+  "required": [ "uri" ]
 }

@@ -15,47 +15,53 @@
       "properties" : {
         "id": {
           "type": "integer",
-          "description": "API id",
+          "description": "API identity [optional null by default]",
           "minimum":0
         },
         "name": {
           "type": "string",
-          "description": "API name"
+          "pattern": "^\\w+$",
+          "description": "API name [optional null by default]"
         },
         "version": {
           "type": "integer",
-          "description": "API version",
+          "description": "API version [optional null by default]",
           "minimum":0
         },
         "description": {
           "type": "string",
-          "description": "API description"
+          "description": "API description [optional null by default]"
         },
         "comparisonConfig":{
           "type": "object",
-          "description": "Response comparison configuration",
+          "description": "Response comparison configuration [optional null by default]",
           "properties": {
             "type": {
               "type": "string",
-              "pattern": "^(JSON|CSV|TXT|ZIP)$"
+              "pattern": "^(JSON|CSV|TXT|ZIP)$",
+              "description": "response type [required]"
             }
-          }
+          },
+          "required": ["type"]
         },
         "executionConfig":{
           "type": "object",
-          "description": "Api execution configuration",
+          "description": "Api execution configuration [optinal]",
           "properties": {
             "enabled": {
               "type": "boolean",
-              "description": "(true by default)"
+              "description": "enable api assertion execution [true by default]"
             },
             "parallel": {
               "type": "boolean",
-              "description": "enable parallel api execution (true by default)"
+              "description": "enable parallel stable & latest api execution [true by default]"
             }
           }
         },
-        "stableApi": {"$ref": "https://oneteme.github.io/http-request.schema.json" }
+        "stableApi": {
+          "$ref": "https://oneteme.github.io/http-request.schema.json" ,
+          "additionalProperties":false
+        }
       }
     }
   }
