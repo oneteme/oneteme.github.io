@@ -2,51 +2,61 @@
   "$id": "https://oneteme.github.io/api-request.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "ApiResquet",
-  "type": "object",
-  "allOf": [{ "$ref": "https://oneteme.github.io/http-request.schema.json" }],
-  "properties": {
-    "id": {
-      "type": "integer",
-      "description": "API id"
-    },
-    "name": {
-      "type": "string",
-      "description": "API name"
-    },
-    "version": {
-      "type": "integer",
-      "description": "API version"
-    },
-    "description": {
-      "type": "string",
-      "description": "API description"
-    },
-    "comparisonConfig":{
+  "type": "array",
+  "items": {
+    "allOf": [
+      { "$ref": "https://oneteme.github.io/http-request.schema.json" },
+      { "$ref": "#/definitions/api" }
+    ]
+  },
+  "definitions": {
+    "api": {
       "type": "object",
-      "description": "Response comparison configuration",
-      "properties": {
-        "type": {
-          "type": "string",
-          "pattern": "^(JSON|CSV|TXT|ZIP)$"
-        }
-      }
-    },
-    "executionConfig":{
-      "type": "object",
-      "description": "Api execution configuration",
-      "properties": {
-        "enabled": {
-          "type": "boolean",
-          "description": "true by default"
+      "properties" : {
+        "id": {
+          "type": "integer",
+          "description": "API id",
+          "minimum":0
         },
-        "parallel": {
-          "type": "boolean",
-          "description": "true by default"
-        }
+        "name": {
+          "type": "string",
+          "description": "API name"
+        },
+        "version": {
+          "type": "integer",
+          "description": "API version",
+          "minimum":0
+        },
+        "description": {
+          "type": "string",
+          "description": "API description"
+        },
+        "comparisonConfig":{
+          "type": "object",
+          "description": "Response comparison configuration",
+          "properties": {
+            "type": {
+              "type": "string",
+              "pattern": "^(JSON|CSV|TXT|ZIP)$"
+            }
+          }
+        },
+        "executionConfig":{
+          "type": "object",
+          "description": "Api execution configuration",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "(true by default)"
+            },
+            "parallel": {
+              "type": "boolean",
+              "description": "enable parallel api execution (true by default)"
+            }
+          }
+        },
+        "stableApi": {"$ref": "https://oneteme.github.io/http-request.schema.json" }
       }
-    },
-    "stableApi": {
-      "allOf": [{ "$ref": "https://oneteme.github.io/http-request.schema.json" }]
     }
   }
 }
